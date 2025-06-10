@@ -1,4 +1,7 @@
 package com.devsuperior.aulalazy.services;
+// @Transactional assegura:
+// (1) resolução da transação com o banco de dados
+// (2) resolução de todas pendências “lazy” com o banco de dados
 
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +22,13 @@ public class DepartmentService {
 	@Autowired
 	private DepartmentRepository repository;
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true) // Não haverá lock (write lock) de escrita
 	public DepartmentDTO findById(Long id) {
 		Optional<Department> result = repository.findById(id);
 		return new DepartmentDTO(result.get());
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true) // Não haverá lock (write lock) de escrita
 	public List<EmployeeMinDTO> findEmployeesByDepartment(Long id) {
 		Optional<Department> result = repository.findById(id);
 		List<Employee> list = result.get().getEmployees();

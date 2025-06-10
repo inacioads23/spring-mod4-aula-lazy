@@ -9,6 +9,7 @@ import com.devsuperior.aulalazy.entities.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
+	//            alias     Entity alias trazer junto o departamento
 	@Query("SELECT obj FROM Employee obj JOIN FETCH obj.department")
 	List<Employee> findEmployeesWithDepartments();
 }

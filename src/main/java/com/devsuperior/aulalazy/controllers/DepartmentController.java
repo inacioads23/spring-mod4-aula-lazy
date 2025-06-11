@@ -18,7 +18,7 @@ import com.devsuperior.aulalazy.services.DepartmentService;
 public class DepartmentController {
 
 	@Autowired
-	private DepartmentService service;
+	private DepartmentService service; //trocar para construtor
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<DepartmentDTO> findById(@PathVariable Long id) {

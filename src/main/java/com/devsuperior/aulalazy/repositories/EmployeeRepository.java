@@ -17,4 +17,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
 	// JPA Query Methods - https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
 	List<Employee> findByNameContainingIgnoreCase(String name); // pesquisa por parte do texto, Ignora maiúscula/ minúscula
+	
+	
+	// JPQL - https://www.baeldung.com/spring-data-jpa-query
+	@Query("SELECT obj FROM Employee obj WHERE UPPER (obj.name) LIKE 'MARIA%'")
+	List<Employee> findByName(String name);
+	
 }
